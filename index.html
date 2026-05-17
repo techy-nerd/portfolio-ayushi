@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayushi Garg — Developer & AI/ML Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0c0e;
+      --surface: #131416;
+      --surface2: #1a1c1f;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --text: #f0ede8;
+      --muted: #8a8782;
+      --accent: #c8f06e;
+      --accent2: #6ef0c8;
+      --accent3: #f06ec8;
+      --tag-bg: rgba(200,240,110,0.1);
+      --tag-text: #c8f06e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(11,12,14,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 0 4rem;
+    }
+
+    .hero-inner { width: 100%; }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name span {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .hero-tagline {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0c0e;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover { background: #d9ff7a; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+
+    .btn-ghost:hover { border-color: var(--text); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      writing-mode: vertical-rl;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--border2);
+    }
+
+    section { padding: 5rem 0; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-family: 'Lora', serif;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-item {
+      padding: 1.5rem;
+      background: var(--surface);
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-desc {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .skill-cat {
+      padding: 1.5rem;
+      background: var(--surface);
+    }
+
+    .skill-cat-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      padding: 0.2rem 0.6rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .tag.blue {
+      background: rgba(110,200,240,0.1);
+      color: #6ec8f0;
+    }
+
+    .tag.pink {
+      background: rgba(240,110,200,0.1);
+      color: #f06ec8;
+    }
+
+    .tag.neutral {
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      padding: 2rem;
+      background: var(--surface);
+      margin-bottom: 1px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      transition: background 0.2s;
+    }
+
+    .project-card:hover { background: var(--surface2); }
+
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      padding-top: 0.2rem;
+    }
+
+    .project-link:hover { text-decoration: underline; }
+    .project-link::after { content: '↗'; font-size: 14px; }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border2);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 7px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .timeline-date {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-body {
+      color: var(--muted);
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .achieve-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .achieve-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .achieve-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .achieve-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .achieve-desc {
+      color: var(--muted);
+      font-size: 12px;
+      font-family: 'Lora', serif;
+      line-height: 1.7;
+    }
+
+    .cert-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 1px;
+    }
+
+    .cert-logo {
+      width: 40px;
+      height: 40px;
+      background: rgba(200,240,110,0.1);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .cert-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .cert-issuer {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .cert-date {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      border: 1px solid var(--border);
+    }
+
+    .contact-item {
+      padding: 1.5rem;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .contact-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .contact-value {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 13px;
+      word-break: break-all;
+    }
+
+    .contact-value:hover { text-decoration: underline; }
+
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-label   { animation: fadeUp 0.6s ease 0.1s both; }
+    .hero-name    { animation: fadeUp 0.6s ease 0.25s both; }
+    .hero-tagline { animation: fadeUp 0.6s ease 0.4s both; }
+    .hero-contacts { animation: fadeUp 0.6s ease 0.55s both; }
+
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .container { padding: 0 1.25rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .hero-scroll { display: none; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#hero">AG_</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <p class="hero-label">B.Tech CSE (AI &amp; ML) · ABES Engineering College</p>
+        <h1 class="hero-name">
+          Ayushi<br>
+          <span>Garg.</span>
+        </h1>
+        <p class="hero-tagline">
+          Full-stack developer &amp; AI enthusiast building intelligent web applications — from NLP-powered tools to award-winning hackathon projects.
+        </p>
+        <div class="hero-contacts">
+          <a class="btn btn-primary" href="#contact">Get in touch</a>
+          <a class="btn btn-ghost" href="https://github.com/YOUR_USERNAME" target="_blank">GitHub ↗</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/YOUR_USERNAME" target="_blank">LinkedIn ↗</a>
+        </div>
+      </div>
+      <span class="hero-scroll">Scroll down</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="about">
+    <div class="container">
+      <p class="section-label">Who I am</p>
+      <h2 class="section-title">About</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a <strong>3rd-year B.Tech student</strong> majoring in Computer Science with a specialisation in AI &amp; ML at ABES Engineering College, Ghaziabad — currently maintaining a <strong>CGPA of 8.5</strong>.</p>
+          <p>My interest sits at the intersection of <strong>full-stack web development</strong> and <strong>artificial intelligence</strong>. I enjoy building end-to-end applications — from React frontends to Python/FastAPI backends — that solve real problems.</p>
+          <p>Outside of coding, I handle graphic design and social media strategy for college clubs, and I sharpen my problem-solving chops with daily DSA practice on LeetCode and CodeChef.</p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-num">8.5</div>
+            <div class="stat-desc">Current CGPA</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">400+</div>
+            <div class="stat-desc">Problems Solved</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Top 20</div>
+            <div class="stat-desc">out of 480+ teams</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">2027</div>
+            <div class="stat-desc">Graduation Year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">What I work with</p>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <div class="skill-cat-label">Languages</div>
+          <div class="skill-tags">
+            <span class="tag">Java</span>
+            <span class="tag">Python</span>
+            <span class="tag">C</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-label">Web / Frameworks</div>
+          <div class="skill-tags">
+            <span class="tag blue">React.js</span>
+            <span class="tag blue">FastAPI</span>
+            <span class="tag blue">HTML5</span>
+            <span class="tag blue">CSS3</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-label">Databases</div>
+          <div class="skill-tags">
+            <span class="tag pink">MongoDB</span>
+            <span class="tag pink">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-label">Cloud / DevOps</div>
+          <div class="skill-tags">
+            <span class="tag neutral">Git</span>
+            <span class="tag neutral">GitHub</span>
+            <span class="tag neutral">Vercel</span>
+            <span class="tag neutral">Netlify</span>
+            <span class="tag neutral">Render</span>
+            <span class="tag neutral">Railway</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-label">Core Concepts</div>
+          <div class="skill-tags">
+            <span class="tag">DSA</span>
+            <span class="tag">OOP</span>
+            <span class="tag">NLP</span>
+            <span class="tag">OS</span>
+            <span class="tag">DBMS</span>
+            <span class="tag">CN</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-label">Competitive Programming</div>
+          <div class="skill-tags">
+            <span class="tag blue">LeetCode</span>
+            <span class="tag blue">CodeChef</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">What I've built</p>
+      <h2 class="section-title">Projects</h2>
+      <div>
+        <div class="project-card">
+          <div>
+            <div class="project-name">Smart Resume Reviewer</div>
+            <p class="project-desc">A collaborative hackathon project — an AI-powered resume analysis tool that generates job-specific ATS improvement suggestions using NLP. Contributed to the ideation, feature planning, and testing phases alongside teammates.</p>
+            <div class="project-tech">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">NLP</span>
+            </div>
+          </div>
+          <a class="project-link" href="https://smart-resume-reviewer-w49kzvypkhm2pv74nnussq.streamlit.app/" target="_blank">Live Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="education">
+    <div class="container">
+      <p class="section-label">Academic background</p>
+      <h2 class="section-title">Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Nov 2023 – July 2027</div>
+          <div class="timeline-title">B.Tech in CSE (AI &amp; ML)</div>
+          <div class="timeline-sub">ABES Engineering College, Ghaziabad · AKTU</div>
+          <div class="timeline-body">Current CGPA: <strong style="color: var(--accent);">8.5</strong> &nbsp;·&nbsp; 5th Semester</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2022 – 2023</div>
+          <div class="timeline-title">Class XII — CBSE</div>
+          <div class="timeline-sub">Holy Angels' Convent School, Muzaffarnagar</div>
+          <div class="timeline-body">Percentage: <strong style="color: var(--accent);">89%</strong></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2020 – 2021</div>
+          <div class="timeline-title">Class X — CBSE</div>
+          <div class="timeline-sub">Holy Angels' Convent School, Muzaffarnagar</div>
+          <div class="timeline-body">Percentage: <strong style="color: var(--accent);">92.8%</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Leadership &amp; work</p>
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">June 2024 – April 2025</div>
+          <div class="timeline-title">Graphics Manager — Creative U Club</div>
+          <div class="timeline-sub">ABES Engineering College, Ghaziabad</div>
+          <div class="timeline-body">Designed banners, posters, and digital graphics for club events, enhancing visual engagement and outreach across platforms.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">July 2024</div>
+          <div class="timeline-title">Social Media Manager — Networking Club (Technovation)</div>
+          <div class="timeline-sub">ABES Engineering College, Ghaziabad</div>
+          <div class="timeline-body">Managed content strategy and promotional campaigns for club events, driving increased online engagement and membership visibility.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="achievements">
+    <div class="container">
+      <p class="section-label">Recognition &amp; credentials</p>
+      <h2 class="section-title">Achievements &amp; Certifications</h2>
+      <div class="achieve-list" style="margin-bottom: 1.5rem;">
+        <div class="achieve-item">
+          <div class="achieve-icon">🏆</div>
+          <div>
+            <div class="achieve-title">HCL GUVI Gen AI Hackathon — Top 20 / 480+ Teams</div>
+            <div class="achieve-desc">Collaborated in a team of 3 to build an AI-powered solution addressing real-world challenges at GUVI Day, ABES EC 2025.</div>
+          </div>
+        </div>
+        <div class="achieve-item">
+          <div class="achieve-icon">⚡</div>
+          <div>
+            <div class="achieve-title">400+ Competitive Programming Problems Solved</div>
+            <div class="achieve-desc">Solved 400+ problems on LeetCode and CodeChef covering arrays, strings, dynamic programming, recursion, and graph algorithms.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">AWS</div>
+        <div>
+          <div class="cert-name">AWS Academy Cloud Foundations</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+        <div class="cert-date">April 2025</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Let's connect</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a class="contact-value" href="mailto:ayushigarg2708@gmail.com">ayushigarg2708@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <a class="contact-value" href="tel:+918218590263">+91-8218590263</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value" style="color: var(--muted); cursor: default;">Ghaziabad, Uttar Pradesh</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn &amp; GitHub</span>
+          <div style="display: flex; gap: 1rem;">
+            <a class="contact-value" href="https://linkedin.com/in/ayushi-garg-tech" target="_blank">LinkedIn ↗</a>
+            <a class="contact-value" href="https://github.com/techy-nerd" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <footer>
+      <span>© 2025 Ayushi Garg</span>
+      <span>Built with HTML &amp; CSS</span>
+    </footer>
+  </div>
+
+</body>
+</html>
